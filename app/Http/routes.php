@@ -1,4 +1,7 @@
 <?php
+use App\Staff;
+use App\Photo;
+use App\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,4 +16,24 @@
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/create', function () {
+
+    $staff = Staff::findOrFail(1);
+
+    $staff->photos()->create(['path' => 'example.gif']);
+
+
+});
+
+Route::get('/read', function () {
+
+    $staff = Staff::findOrFail(1);
+
+    foreach ($staff->photos as $photo)
+    {
+        return $photo->path;
+    }
+
 });
