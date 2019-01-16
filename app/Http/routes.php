@@ -35,3 +35,44 @@ Route::get('/create', function () {
     $video->tags()->save($tag2);
 
 });
+
+Route::get('/read', function () {
+
+    $post = Post::findOrFAil(1);
+
+    foreach ($post->tags as $tag)
+    {
+        echo $tag;
+    }
+
+});
+
+Route::get('/update', function () {
+
+    $post = Post::findOrFail(1);
+
+    // foreach ($post->tags as $tag)
+    // {
+    //     return $tag->whereName('PHP')->update(['name'=>'PHP 7.2']);
+    // }
+
+    $tag = Tag::find(3);
+
+    // $post->tags()->save($tag);
+
+    // $post->tags()->attach($tag);
+
+    $post->tags()->sync([2,1]);
+
+});
+
+Route::get('/delete', function () {
+
+    $post = Post::findOrFail(1);
+
+    foreach ($post->tags as $tag)
+    {
+        $tag->whereId(1)->delete();
+    }
+
+});
