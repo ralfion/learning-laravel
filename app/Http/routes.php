@@ -16,8 +16,10 @@ Route::get('/', function () {
 });
 
 
+Route::resource('/posts', 'PostsController');
+
 Route::get('/post', 'PostsController@index');
 
 Route::get('/posts/create', 'PostsController@create');
 
-Route::get('/posts/create', 'PostsController@create');
+Route::get('/posts/store', 'PostsController@store');
