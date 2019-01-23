@@ -3,26 +3,34 @@
 
 @section('content')
 
-<form method="post" action="/posts/{{$post->id}}">
+    {!! Form::model($post, ['method' => 'PATCH', 'action' => ['PostsController@update', $post->id]])!!}
 
-    <input type="text" name="title" placeholder="Enter title" value="{{$post->title}}">
+        <div class="form-group">
 
-    <input type="hidden" name="_method" value="PUT">
+            {!! Form::label('title', 'Title:') !!}
+            {!! Form::text('title', null, ['class' =>'form-control']) !!}
 
-    <input type="submit" name="submit" value="update">
+        </div>
 
-    {{csrf_field()}}
+        <div class="form-group">
 
-</form>
+            {!! Form::submit('Update Post', ['class'=>'btn btn-primary']) !!}
 
-<form method="post" action="/posts/{{$post->id}}">
+        </div>
 
-    <input type="hidden" name="_method" value="DELETE">
 
-    <input type="submit" name="submit" value="delete">
+    {!! Form::close() !!}
 
-    {{csrf_field()}}
+    <hr>
 
-</form>
+    {!! Form::open(['method' => 'DELETE', 'action' => ['PostsController@destroy', $post->id]])!!}
+
+        <div class="form-group">
+
+            {!! Form::submit('Delete Post', ['class'=>'btn btn-danger']) !!}
+
+        </div>
+
+    {!! Form::close() !!}
 
 @endsection

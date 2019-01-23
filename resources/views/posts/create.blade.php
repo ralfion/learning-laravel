@@ -3,13 +3,41 @@
 
 @section('content')
 
-<form method="post" action="/posts">
+<h1>Create post</h1>
 
-    <input type="text" name="title" placeholder="Enter title">
+    @if(count($errors) > 0)
 
-    <input type="submit" name="submit">
+    <div class="alert alert-danger">
 
-    {{csrf_field()}}
-</form>
+        <ul>
+
+            @foreach($errors->all() as $error)
+
+            <li>{{$error}}</li>
+
+            @endforeach
+
+        </ul>
+
+    </div>
+
+    @endif
+
+    {!! Form::open(['method' => 'POST', 'action' => 'PostsController@store'])!!}
+
+        <div class="form-group">
+
+            {!! Form::label('title', 'Title:') !!}
+            {!! Form::text('title', null, ['class' =>'form-control']) !!}
+
+        </div>
+
+        <div class="form-group">
+
+            {!! Form::submit('Create Post', ['class'=>'btn btn-primary']) !!}
+
+        </div>
+
+    {!! Form::close() !!}
 
 @endsection
