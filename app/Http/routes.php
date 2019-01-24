@@ -1,5 +1,5 @@
 <?php
-
+use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -18,3 +18,27 @@ Route::get('/', function () {
 
 
 Route::resource('/posts', 'PostsController');
+
+Route::get('/dates', function() {
+
+    $date = new DateTime('+1 week');
+
+    echo $date->format('Y-m-d');
+
+    echo '<br>';
+
+    echo Carbon::now()->addDays(7)->diffForHumans();
+
+    echo '<br>';
+
+    echo Carbon::now()->subMonths(5)->diffForHumans();
+
+    echo '<br>';
+
+    echo Carbon::now()->addMonths(5)->diffForHumans();
+
+    echo '<br>';
+
+    echo Carbon::now()->yesterday();
+
+});
