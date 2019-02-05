@@ -12,4 +12,10 @@ class Post extends Model
         'user_id', 'title', 'content'
     ];
 
+
+    public function scopeLatest($query)
+    {
+        return $query->orderBy('id', 'desc');
+    }
+
 }

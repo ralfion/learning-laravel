@@ -19,7 +19,7 @@ class PostsController extends Controller
     {
 
         //
-        $posts = Post::all();
+        $posts = Post::Latest()->get();
 
         return view('posts.index', compact('posts'));
 

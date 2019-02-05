@@ -1,4 +1,5 @@
 <?php
+use App\User;
 use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
@@ -40,5 +41,24 @@ Route::get('/dates', function() {
     echo '<br>';
 
     echo Carbon::now()->yesterday();
+
+});
+
+
+Route::get('getname', function() {
+
+    $user = User::find(1);
+
+    echo $user->name . ' | ' . $user->email;
+
+});
+
+Route::get('setname', function() {
+
+    $user = User::find(1);
+
+    $user->name = 'Willi Doe';
+
+    $user->save();
 
 });
